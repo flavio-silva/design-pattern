@@ -6,7 +6,7 @@ $di->set('helper-list', function () use($di) {
     return new DP\Helper\HtmlListHelper();
 });
 
-$di->set('db', new \PDO("sqlite:" . __DIR__ . "/../dp"));
+$di->set('db', new \PDO("sqlite:" . __DIR__ . "/../data/dp"));
 
 $categorias = $di->set('categorias', function () use ($di) {
    $db = $di->get('db'); 
@@ -84,6 +84,6 @@ if($request->isGet()) {
     $get = $request->getGet();
 }
 
-require_once __DIR__ . '/../src/layout/header.phtml';
-require_once __DIR__ . '/../src/view/contato.phtml';
-require_once __DIR__ . '/../src/layout/footer.phtml';
+require_once __DIR__ . '/../src/DP/layout/header.phtml';
+require_once __DIR__ . '/../src/DP/view/contato.phtml';
+require_once __DIR__ . '/../src/DP/layout/footer.phtml';
