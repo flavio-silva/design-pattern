@@ -2,7 +2,7 @@
 
 namespace DP\Form;
 
-class TextArea extends AbstractForm  implements RenderInterface
+class TextArea extends AbstractForm  implements RenderInterface, TextAreaInterface
 {
     private $content;
     
@@ -23,7 +23,7 @@ class TextArea extends AbstractForm  implements RenderInterface
 
     public function createField(AbstractForm $field)
     {
-        throw new \DomainException('Voce nao pode adicionar campos a esse campo');
+        throw new \DomainException('You cannot put a field into another field');
     }
     
     public function getContent()
