@@ -19,7 +19,7 @@ class Input extends AbstractForm implements RenderInterface
 
     public function createField(AbstractForm $field)
     {
-        throw new \DomainException('Voce nao pode adicionar campos a esse campo');
+        throw new \DomainException('You cannot put a field into another field');
     }
     
     public function populate(array $data)
