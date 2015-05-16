@@ -84,6 +84,6 @@ if($request->isGet()) {
     $get = $request->getGet();
 }
 
-require_once __DIR__ . '/../layout/header.phtml';
-require_once __DIR__ . '/../view/contato.phtml';
-require_once __DIR__ . '/../layout/footer.phtml';
+require_once __DIR__ . '/../src/layout/header.phtml';
+require_once __DIR__ . '/../src/view/contato.phtml';
+require_once __DIR__ . '/../src/layout/footer.phtml';
