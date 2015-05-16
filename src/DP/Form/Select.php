@@ -4,7 +4,7 @@ namespace DP\Form;
 
 class Select extends AbstractForm implements SelectInterface, RenderInterface
 {
-    protected $options;
+    protected $options = [];
     protected $selected;
     
     public function setValueOptions(array $options)
@@ -33,7 +33,6 @@ class Select extends AbstractForm implements SelectInterface, RenderInterface
             }
             
         }
-        
 
         $html .= '</select>';
         
@@ -42,7 +41,7 @@ class Select extends AbstractForm implements SelectInterface, RenderInterface
 
     public function createField(AbstractForm $field)
     {
-        throw new \DomainException('Voce nao pode adicionar campos a esse campo');
+        throw new \DomainException('You cannot put a field into another field');
     }
     
     public function setSelected($selected)
