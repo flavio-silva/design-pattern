@@ -1,8 +1,12 @@
 {
     "require": {
-        "aura/di": "~2.0"
+        "aura/di": "~2.0",
+        "phpunit/phpunit": "4.2.6"
     },
     "autoload": {
         "psr-0" :{"DP": "src/"}
+    },
+    "config": {
+        "bin-dir": "bin/"
     }
 }
