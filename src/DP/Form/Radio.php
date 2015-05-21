@@ -43,7 +43,22 @@ class Radio extends AbstractForm implements RenderInterface
     public function populate(array $data)
     {
         if(array_key_exists($this->getName(), $data)) {            
-            $this->selected = $data[$this->getName()];
+            $this->setSelected($data[$this->getName()]);
         }
+    }
+    
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+    
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
+    }
+    
+    public function getValues()
+    {
+        return $this->values;
     }
 }

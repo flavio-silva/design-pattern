@@ -50,6 +50,11 @@ class Select extends AbstractForm implements SelectInterface, RenderInterface
         return $this;
     }
     
+    public function getSelected()
+    {
+        return $this->selected;
+    }
+
     public function populate(array $data)
     {        
         if(array_key_exists($this->getName(), $data)) {

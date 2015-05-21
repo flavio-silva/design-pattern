@@ -28,7 +28,26 @@ class InputTest extends \PHPUnit_Framework_TestCase
         $tag = $input->render();
         $this->assertRegExp('/^<.*?>$/', $tag);
     }
-    
+    /**
+     * @dataProvider getProvider
+     */
+    public function testVerificaSeOMetodoPopulateSetaOAtributoValue($value)
+    {
+        $input = $this->getInput('input');
+        $input->populate(['input' => $value]);
+        $this->assertEquals($value, $input->getAttribute('value'));
+    }
+
+    public function getProvider()
+    {
+        return [
+            [10],
+            [1],
+            [3],
+            [110],
+        ];
+    }
+        
     private function getInput($name)
     {
         return new Input($name);

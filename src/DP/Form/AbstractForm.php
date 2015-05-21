@@ -26,6 +26,15 @@ abstract class AbstractForm
         $this->attributes[$name] = $value;
         return $this;
     }
+    
+    public function getAttribute($name)
+    {
+        if(array_key_exists($name, $this->attributes)) {
+            return $this->attributes[$name];
+        }
+        
+        throw new \InvalidArgumentException("There's no attribute named {$name}");
+    }
 
     public function createField(AbstractForm $field)
     {

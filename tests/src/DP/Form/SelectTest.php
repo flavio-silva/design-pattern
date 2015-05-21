@@ -44,4 +44,24 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         $select = $this->getSelect('contato');
         $select->populate(['contato' => []]);
     }
+    /**
+     * 
+     * @dataProvider getProvider
+     */
+    public function testVerificaSeOMetodoPopulateSetaOSelected($value)
+    {
+        $select= $this->getSelect('select');
+        $select->populate(['select' => $value]);
+        $this->assertEquals($value, $select->getSelected());
+    }
+    
+    public function getProvider()
+    {
+        return [
+            ['RJ'],
+            ['SP'],
+            ['MG'],
+            ['AM'],
+        ];
+    }
 }

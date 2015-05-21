@@ -8,7 +8,9 @@ class Request
 
     public function __construct()
     {
-        $this->method = $_SERVER['REQUEST_METHOD'];
+        if(isset($_SERVER['REQUEST_METHOD'])) {
+            $this->method = $_SERVER['REQUEST_METHOD'];
+        }
     }
 
     public function isPost()

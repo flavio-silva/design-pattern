@@ -45,4 +45,23 @@ class TextAreaTest extends \PHPUnit_Framework_TestCase
             'text-area' => []
         ]);
     }
+    /**
+     * @dataProvider getProvider
+     */
+    public function testVerificaSeOMetodoPopulateSetaOContent($value)
+    {
+        $textArea = $this->getTextArea('text-area');
+        $textArea->populate(['text-area'=> $value]);
+        $this->assertEquals($value, $textArea->getContent());
+    }
+    
+    public function getProvider()
+    {
+        return [
+            ['message1'],
+            ['message2'],
+            ['message3'],
+            ['message4'],
+        ];
+    }
 }

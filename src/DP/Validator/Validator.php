@@ -24,6 +24,11 @@ class Validator extends AbstractValidator
         return $this;
     }
     
+    public function getValidators()
+    {
+        return $this->validators;
+    }
+    
     public function isValid()
     {
         $return = true;
