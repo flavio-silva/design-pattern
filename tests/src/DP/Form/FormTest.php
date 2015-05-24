@@ -6,6 +6,9 @@ use DP\Validator\Validator;
 use DP\Request\Request;
 use DP\Form\Input;
 use DP\Form\Select;
+use DP\Validator\InArray;
+use DP\Validator\StringLength;
+use DP\Validator\Currency;
 
 class FormTest extends \PHPUnit_Framework_TestCase
 {
@@ -62,6 +65,66 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2000', $this->form->getField('valor')->getAttribute('value'));
         $this->assertEquals('Dell Inspiron', $this->form->getField('descricao')->getAttribute('value'));
         $this->assertEquals('2', $this->form->getField('categoria')->getSelected());
+    }
+    
+    public function testVerificaAFuncionalidadeDeValidacaoDeDados()
+    {
+        $nome = new Input('nome');
+        $nome->setAttribute('type', 'text');
+
+        $valor = new Input('valor');
+        $valor->setAttribute('type', 'text');
+
+        $descricao = new Input('descricao');
+        $descricao->setAttribute('type', 'text');
+
+        $categoria = new Select('categoria');
+        
+        $this->form->createField($nome)
+            ->createField($valor)
+            ->createField($descricao)
+            ->createField($categoria->setValueOptions($this->categorias))
+        ;
+        
+        $inArray = new InArray();
+        $inArray->setData(array_keys($this->categorias))
+            ->setName('categoria')
+        ;
+
+        $stringLength = new StringLength(200);
+        $stringLength->setName('descricao');
+        
+        $currency = new Currency();
+        $currency->setName('valor');
+
+        $this->form->getValidator()
+                ->add($currency)
+                ->add($inArray)
+                ->add($stringLength)
+        ;
+        
+        $this->form->populate($this->data);
+        $this->assertTrue($this->form->isValid());
+        
+        $data = $this->data;
+        $data['valor'] = 'text';
+        $this->form->populate($data);
+        $this->assertFalse($this->form->isValid());
+      
+        $data = $this->data;
+        $data['descricao'] = 'O vídeo fornece uma maneira poderosa de ajudá-lo a provar seu argumento.'
+        . 'Ao clicar em Vídeo Online, você pode colar o código de inserção do vídeo que deseja adicionar.'
+        . 'Você também pode digitar uma palavra-chave para pesquisar online o vídeo mais adequado ao seu documento.'
+        ;
+        
+        $this->form->populate($data);        
+        $this->assertFalse($this->form->isValid());
+        
+        $data = $this->data;
+        $data['categoria'] = 5;
+        
+        $this->form->populate($data);
+        $this->assertFalse($this->form->isValid());
     }
     
     public function getForm()

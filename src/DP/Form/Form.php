@@ -34,7 +34,9 @@ class Form extends AbstractForm implements RenderTagsInterface
     {
         return $this->validator->isValid();
     }
-    
+    /**
+     * @return \DP\Validator\Validator
+     */
     public function getValidator()
     {
         return $this->validator;
