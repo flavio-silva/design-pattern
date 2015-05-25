@@ -40,6 +40,15 @@ class FormTest extends \PHPUnit_Framework_TestCase
         ];
     }
     
+    public function tearDown()
+    {
+        unset($_POST);
+        unset($_SERVER['REQUEST_METHOD']);
+        unset($this->data);
+        unset($this->form);
+        unset($this->categorias);
+    }
+    
     public function testVerificaAFuncionalidadeDePopularDados()
     {               
         $nome = new Input('nome');
